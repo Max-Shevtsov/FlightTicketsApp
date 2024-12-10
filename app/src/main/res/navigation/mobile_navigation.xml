@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_flights">
+
+    <fragment
+        android:id="@+id/navigation_flights"
+        android:name="com.max.flightticketsapp.ui.flightsFragment.FlightsFragment"
+        android:label="@string/flight_tickets"
+        tools:layout="@layout/fragment_flights">
+        <action
+            android:id="@+id/action_flights_to_search"
+            app:destination="@id/navigation_search"
+            app:popUpTo="@id/navigation_flights" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_hotels"
+        android:name="com.max.flightticketsapp.ui.mockFragments.HotelsFragment"
+        android:label="@string/hotels"
+        tools:layout="@layout/fragment_hotels" />
+    <fragment
+        android:id="@+id/navigation_shortsAboutTowns"
+        android:name="com.max.flightticketsapp.ui.mockFragments.ShortsAboutTownsFragment"
+        android:label="@string/shorts_about_towns"
+        tools:layout="@layout/fragment_shorts_about_towns" />
+    <fragment
+        android:id="@+id/navigation_subscribes"
+        android:name="com.max.flightticketsapp.ui.mockFragments.SubscribesFragment"
+        android:label="@string/subscribes"
+        tools:layout="@layout/fragment_subscribes" />
+    <fragment
+        android:id="@+id/navigation_userProfile"
+        android:name="com.max.flightticketsapp.ui.mockFragments.UserProfileFragment"
+        android:label="@string/profile"
+        tools:layout="@layout/fragment_user_profile" />
+    <dialog
+        android:id="@+id/navigation_search"
+        android:name="com.max.flightticketsapp.ui.searchFragment.SearchFragment"
+        android:label="@string/search"
+        tools:layout="@layout/fragment_search">
+        <argument
+            android:name="departure"
+            android:defaultValue="Калининград"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="arrival"
+            android:defaultValue="Москва"
+            app:argType="string"
+            app:nullable="true" />
+    </dialog>
+</navigation>
