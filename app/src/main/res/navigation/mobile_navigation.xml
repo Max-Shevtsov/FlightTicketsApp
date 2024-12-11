@@ -40,6 +40,10 @@
         android:name="com.max.flightticketsapp.ui.searchFragment.SearchFragment"
         android:label="@string/search"
         tools:layout="@layout/fragment_search">
+        <action
+            android:id="@+id/action_search_to_ticketsOffers"
+            app:destination="@id/navigation_ticketsOffers"
+            app:popUpTo="@id/navigation_flights" />
         <argument
             android:name="departure"
             android:defaultValue="Калининград"
@@ -51,4 +55,23 @@
             app:argType="string"
             app:nullable="true" />
     </dialog>
+    <fragment
+        android:id="@+id/navigation_ticketsOffers"
+        android:name="com.max.flightticketsapp.ui.ticketsOffersFragment.TicketsOffersFragment"
+        android:label="TicketsOffersFragment" >
+        <argument
+            android:name="departure"
+            android:defaultValue="Калининград"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="arrival"
+            android:defaultValue="Москва"
+            app:argType="string"
+            app:nullable="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_tickets"
+        android:name="com.max.flightticketsapp.ui.ticketsFragment.TicketsFragment"
+        android:label="TicketsFragment" />
 </navigation>

@@ -1,18 +1,18 @@
 package com.max.flightticketsapp.ui.searchFragment
 
 import android.app.Dialog
-import android.content.Context
 import androidx.fragment.app.viewModels
 import android.os.Bundle
 import android.view.Gravity
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import android.view.WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE
-import android.view.WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE
-import android.widget.FrameLayout
-import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.core.widget.doAfterTextChanged
+import androidx.core.widget.doOnTextChanged
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetBehavior
@@ -20,7 +20,6 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.max.flightticketsapp.R
 import com.max.flightticketsapp.databinding.FragmentSearchBinding
-import com.max.flightticketsapp.ui.flightsFragment.FlightsToConcertAdapter
 
 class SearchFragment : BottomSheetDialogFragment() {
 
@@ -28,7 +27,7 @@ class SearchFragment : BottomSheetDialogFragment() {
 
     private val binding get() = _binding!!
     private lateinit var adapter: RecomendationAdapter
-
+    private val bundle = Bundle()
     private val viewModel: SearchViewModel by viewModels()
     override fun getTheme() = R.style.AppBottomSheetDialogTheme
 
@@ -52,7 +51,6 @@ class SearchFragment : BottomSheetDialogFragment() {
             }
 
         }
-
         return dialog
     }
 
@@ -69,6 +67,8 @@ class SearchFragment : BottomSheetDialogFragment() {
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
 
+        initListeners()
+
         return view
     }
 
@@ -80,7 +80,7 @@ class SearchFragment : BottomSheetDialogFragment() {
     private fun getArgsFromFlightsFragment() {
 
         binding.departure.setText(arguments?.getString("departure_town"))
-        binding.arrivale.requestFocus()
+        binding.arrival.requestFocus()
         dialog?.window?.setSoftInputMode(SOFT_INPUT_STATE_ALWAYS_VISIBLE)
     }
 
@@ -88,5 +88,33 @@ class SearchFragment : BottomSheetDialogFragment() {
         val layoutParams = bottomSheet.layoutParams
         layoutParams.height = WindowManager.LayoutParams.MATCH_PARENT
         bottomSheet.layoutParams = layoutParams
+    }
+
+    private fun initListeners() {
+        binding.departure.doOnTextChanged { text, _, _, _ ->
+            bundle.putString("departure_town", text.toString())
+        }
+        binding.arrival.doOnTextChanged { text, _, _, _ ->
+            bundle.putString("arrival_town", text.toString())
+        }
+        binding.departure.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
+            if (keyCode == KeyEvent.KEYCODE_ENTER && event.action == KeyEvent.ACTION_UP) {
+                binding.arrival.requestFocus()
+                return@OnKeyListener true
+            }
+            false
+        })
+        binding.arrival.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
+            if (keyCode == KeyEvent.KEYCODE_ENTER && event.action == KeyEvent.ACTION_UP) {
+                findNavController().navigate(R.id.navigation_ticketsOffers, bundle)
+                return@OnKeyListener true
+            }
+            false
+        })
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

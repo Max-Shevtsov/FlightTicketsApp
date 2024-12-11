@@ -12,7 +12,7 @@ android {
 
     defaultConfig {
         applicationId = "com.max.flightticketsapp"
-        minSdk = 24
+        minSdk = 26
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -58,6 +58,11 @@ dependencies {
 
     //Glide
     implementation("com.github.bumptech.glide:glide:4.12.0")
-    //Coil
-//    implementation ("io.coil-kt:coil:2.2.2")
+    //DateTime
+    implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.6.1")
+//    implementation(libs.dagger)
+//    kapt(libs.dagger.compiler)
+    implementation ("com.google.dagger:dagger:2.53")
+    implementation(project(":booking-flights-data"))
+    kapt ("com.google.dagger:dagger-compiler:2.53")
 }

@@ -37,16 +37,24 @@
                 android:layout_weight="1"
                 android:orientation="horizontal">
 
-                                <EditText
+                <EditText
                     android:id="@+id/departure"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
+                    android:layout_weight="1"
                     android:background="@android:color/transparent"
                     android:gravity="center_vertical"
                     android:hint="Откуда - Москва"
                     android:textColor="@color/text_color"
                     android:textColorHint="@color/gray6"
                     android:textSize="16sp" />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="8dp"
+                    android:src="@drawable/ic_change_dep_to_arvl" />
+
             </LinearLayout>
 
             <com.google.android.material.divider.MaterialDivider
@@ -64,7 +72,7 @@
 
 
                 <EditText
-                    android:id="@+id/arrivale"
+                    android:id="@+id/arrival"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -78,9 +86,8 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:paddingStart="16dp"
-                    android:paddingEnd="16dp"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="8dp"
                     android:src="@drawable/ic_close" />
             </LinearLayout>
         </LinearLayout>
@@ -179,11 +186,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        android:text="Посмотреть все билеты"
-        android:textAllCaps="false"
         android:background="@drawable/button_background"
         android:backgroundTint="@color/blue"
-        android:textStyle="italic"/>
+        android:text="Посмотреть все билеты"
+        android:textAllCaps="false"
+        android:textStyle="italic" />
 
 </LinearLayout>
 

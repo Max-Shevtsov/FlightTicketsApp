@@ -11,10 +11,10 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="96dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="8dp"
-        android:background="@drawable/search_field_background2"
+        android:background="@color/gray2"
         android:orientation="horizontal">
 
         <ImageView
@@ -25,165 +25,39 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <LinearLayout
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:orientation="horizontal">
+                android:hint="Откуда-Куда"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white" />
 
-                                <EditText
-                    android:id="@+id/departure"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@android:color/transparent"
-                    android:gravity="center_vertical"
-                    android:hint="Откуда - Москва"
-                    android:textColor="@color/text_color"
-                    android:textColorHint="@color/gray6"
-                    android:textSize="16sp" />
-            </LinearLayout>
-
-            <com.google.android.material.divider.MaterialDivider
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_gravity="center"
-                app:dividerColor="@color/gray5" />
-
-            <LinearLayout
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:orientation="horizontal">
-
-
-                <EditText
-                    android:id="@+id/arrivale"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:background="@android:color/transparent"
-                    android:gravity="center_vertical"
-                    android:hint="Куда - Турция"
-                    android:textColor="@color/text_color"
-                    android:textColorHint="@color/gray6"
-                    android:textSize="16sp" />
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:paddingStart="16dp"
-                    android:paddingEnd="16dp"
-                    android:src="@drawable/ic_close" />
-            </LinearLayout>
+                android:hint="Доп. информация"
+                android:textColor="@color/gray6"
+                android:textColorHint="@color/gray6" />
         </LinearLayout>
 
 
     </LinearLayout>
 
-    <HorizontalScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="8dp">
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:layout_width="105dp"
-                android:layout_height="33dp"
-                android:layout_gravity="center_vertical"
-                android:background="@drawable/cheap_background"
-                android:drawableStart="@drawable/ic_plus"
-                android:paddingStart="8dp"
-                android:text="Обратно"
-                android:textAllCaps="false"
-                android:textColor="@color/white" />
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:layout_width="105dp"
-                android:layout_height="33dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginStart="8dp"
-                android:background="@drawable/cheap_background"
-                android:hint="Дата"
-                android:textAllCaps="false"
-                android:textColorHint="@color/white" />
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:layout_width="105dp"
-                android:layout_height="33dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginStart="8dp"
-                android:background="@drawable/cheap_background"
-                android:drawableStart="@drawable/ic_human"
-                android:paddingStart="8dp"
-                android:text="1, эконом"
-                android:textAllCaps="false"
-                android:textColor="@color/white"
-                android:textStyle="italic" />
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:layout_width="105dp"
-                android:layout_height="33dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginStart="8dp"
-                android:background="@drawable/cheap_background"
-                android:drawableStart="@drawable/ic_settings"
-                android:paddingStart="8dp"
-                android:text="Карта"
-                android:textAllCaps="false"
-                android:textColor="@color/white" />
-        </LinearLayout>
 
 
-    </HorizontalScrollView>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:background="@drawable/search_field_background2"
-        android:backgroundTint="@color/gray1"
-        android:orientation="vertical"
-        android:padding="16dp">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Прямые рейсы"
-            android:textColor="@color/white"
-            android:textSize="20sp"
-            android:textStyle="bold" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_gravity="center"
             android:layout_marginTop="8dp"
             tools:itemCount="3"
             tools:listitem="@layout/item_tickets_offers" />
-    </LinearLayout>
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:text="Посмотреть все билеты"
-        android:textAllCaps="false"
-        android:background="@drawable/button_background"
-        android:backgroundTint="@color/blue"
-        android:textStyle="italic"/>
 
 </LinearLayout>
 

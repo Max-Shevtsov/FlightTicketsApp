@@ -65,15 +65,15 @@ class FlightsFragment : Fragment() {
         }
         binding.departure.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
             if (keyCode == KeyEvent.KEYCODE_ENTER && event.action == KeyEvent.ACTION_UP) {
-                findNavController().navigate(R.id.navigation_search, bundle)
+                binding.arrival.requestFocus()
                 return@OnKeyListener true
             }
             false
         })
-        binding.arrivale.setOnFocusChangeListener { v, hasFocus ->
+        binding.arrival.setOnFocusChangeListener { v, hasFocus ->
             if (hasFocus) {
                 findNavController().navigate(R.id.navigation_search, bundle)
-                    binding.arrivale.clearFocus()
+                    binding.arrival.clearFocus()
             }
         }
     }

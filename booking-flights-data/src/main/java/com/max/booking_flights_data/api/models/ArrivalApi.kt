@@ -3,7 +3,7 @@ package com.max.booking_flights_data.api.models
 import com.google.gson.annotations.SerializedName
 
 
-internal data class Arrival (
+internal data class ArrivalApi (
 
     @SerializedName("town"    ) var town    : String? = null,
     @SerializedName("date"    ) var date    : String? = null,

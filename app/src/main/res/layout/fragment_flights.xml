@@ -61,6 +61,7 @@
                     android:hint="Откуда - Москва"
                     android:textColorHint="@color/gray6"
                     android:textColor="@color/text_color"
+                    android:inputType="textShortMessage"
                     android:textSize="16sp" />
 
                 <com.google.android.material.divider.MaterialDivider
@@ -69,7 +70,7 @@
                     app:dividerColor="@color/gray5" />
 
                 <EditText
-                    android:id="@+id/arrivale"
+                    android:id="@+id/arrival"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"

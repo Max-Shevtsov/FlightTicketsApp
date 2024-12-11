@@ -49,6 +49,9 @@ dependencies {
     implementation("androidx.room:room-ktx:$roomVersion")
     implementation("androidx.room:room-common:$roomVersion")
     implementation("androidx.room:room-ktx:$roomVersion")
+    //implementation(libs.dagger)
+    implementation ("com.google.dagger:dagger:2.53")
+    kapt ("com.google.dagger:dagger-compiler:2.53")
     kapt("androidx.room:room-compiler:$roomVersion")
-
+    //
 }

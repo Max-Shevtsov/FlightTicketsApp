@@ -6,14 +6,17 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.max.flightticketsapp.data.model.Ticket
-import com.max.flightticketsapp.databinding.ItemFlightToConcertBinding
+import com.max.flightticketsapp.databinding.ItemTicketsBinding
+import kotlinx.datetime.DateTimePeriod
+import kotlinx.datetime.LocalDateTime
+import kotlinx.datetime.plus
 
 class TicketsAdapter() :
     ListAdapter<Ticket, TicketsAdapter.ViewHolder>(DIFFUTIL) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val binding = ItemFlightToConcertBinding.inflate(inflater, parent, false)
+        val binding = ItemTicketsBinding.inflate(inflater, parent, false)
         return ViewHolder(binding)
     }
 
@@ -24,12 +27,22 @@ class TicketsAdapter() :
     }
 
     class ViewHolder(
-        private val binding: ItemFlightToConcertBinding
+        private val binding: ItemTicketsBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(ticket: Ticket) {
             with(binding) {
-                //TODO()
+                binding.price.text = ticket.price?.value.toString()
+
+                binding.arrTime.text =
+                    ticket.arrival?.date?.let { LocalDateTime.parse(it).time.toString() }
+                binding.arrAirport.text = ticket.arrival?.airport
+
+                binding.depTime.text =
+                    ticket.departure?.date?.let { LocalDateTime.parse(it).time.toString() }
+                binding.depAirport.text = ticket.departure?.airport
+
+                binding.flightTime.text
             }
         }
     }

@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -40,5 +41,19 @@ class TicketsOffersFragment : Fragment() {
         return view
     }
 
+    override fun onResume() {
+        super.onResume()
+        getArgsFromFlightsFragment()
+    }
 
+    private fun getArgsFromFlightsFragment() {
+
+        binding.departure.setText(arguments?.getString("departure_town"))
+        binding.arrival.setText(arguments?.getString("arrival_town"))
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }
