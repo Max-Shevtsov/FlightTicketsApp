@@ -1,7 +1,7 @@
 package com.max.flightticketsapp.data.model
 
 
-data class Tickets(
+data class Ticket(
 
     var id: Int? = null,
     var badge: String? = null,
