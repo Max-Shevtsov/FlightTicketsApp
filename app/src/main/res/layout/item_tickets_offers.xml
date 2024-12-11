@@ -32,6 +32,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:hint="Город"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/white"
                     android:textSize="16sp" />
 
                 <TextView
@@ -41,6 +43,8 @@
                     android:layout_marginEnd="8dp"
                     android:gravity="end"
                     android:hint="Цена"
+                    android:textColor="@color/blue"
+                    android:textColorHint="@color/blue"
                     android:textSize="16sp" />
             </LinearLayout>
 
@@ -51,6 +55,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:hint="Время вылета"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
                 android:textSize="14sp" />
 
 

@@ -14,7 +14,7 @@
         android:layout_height="96dp"
         android:layout_margin="8dp"
         android:layout_gravity="center"
-        android:background="@drawable/search_field_background"
+        android:background="@drawable/search_field_background2"
         android:orientation="vertical">
 
         <LinearLayout
@@ -200,7 +200,7 @@
         tools:itemCount="3"
         android:padding="16dp"
         android:layout_margin="8dp"
-        android:background="@drawable/search_field_background"
+        android:background="@drawable/search_field_background2"
         tools:listitem="@layout/item_recomendation" />
 
 </LinearLayout>
