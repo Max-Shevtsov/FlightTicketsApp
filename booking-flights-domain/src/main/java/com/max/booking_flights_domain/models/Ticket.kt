@@ -1,7 +1,7 @@
 package com.max.booking_flights_domain.models
 
 
-data class Tickets(
+data class Ticket(
 
     var id: Int? = null,
     var badge: String? = null,

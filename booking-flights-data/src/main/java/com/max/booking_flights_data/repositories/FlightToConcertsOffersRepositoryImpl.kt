@@ -6,7 +6,7 @@ import com.max.booking_flights_domain.models.FlightToConcertOffer
 import com.max.booking_flights_domain.repositories.FlightToConcertsOffersRepository
 import javax.inject.Inject
 
-internal class FlightToConcertsOffersRepositoryImpl @Inject constructor(
+class FlightToConcertsOffersRepositoryImpl @Inject constructor(
     private val offersApi: OffersApi,
 ) : FlightToConcertsOffersRepository {
 
