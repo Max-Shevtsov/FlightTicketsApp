@@ -10,6 +10,6 @@ class TicketsRepositoryImpl @Inject constructor(
     private val ticketsApi: TicketsApi
 ) : TicketsRepository {
     override suspend fun getTickets(): List<Ticket> {
-        ticketsApi.getTickets().toTickets()
+        return ticketsApi.getTickets().toTickets()
     }
 }
