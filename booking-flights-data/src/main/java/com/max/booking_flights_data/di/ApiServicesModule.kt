@@ -1,8 +1,5 @@
 package com.max.booking_flights_data.di
 
-import com.max.booking_flights_data.api.OffersApi
-import com.max.booking_flights_data.api.TicketsApi
-import com.max.booking_flights_data.api.TicketsOffersApi
 import com.max.booking_flights_data.api.models.OffersListApi
 import com.max.booking_flights_data.api.models.TicketsListApi
 import com.max.booking_flights_data.api.models.TicketsOffersListApi
