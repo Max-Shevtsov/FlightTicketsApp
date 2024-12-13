@@ -2,7 +2,7 @@ package com.max.booking_flights_data.api.models
 
 import com.google.gson.annotations.SerializedName
 
-internal data class TicketApi(
+data class TicketApi(
 
     @SerializedName("id") var id: Int? = null,
     @SerializedName("badge") var badge: String? = null,
