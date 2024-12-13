@@ -28,7 +28,7 @@ internal fun TicketsListApi.toTickets(): List<Ticket> {
     }
 }
 
-internal fun DepartureApi.toDeparture(): Departure {
+fun DepartureApi.toDeparture(): Departure {
     return Departure(
         town = town,
         date = date,
@@ -36,7 +36,7 @@ internal fun DepartureApi.toDeparture(): Departure {
     )
 }
 
-internal fun ArrivalApi.toArrival(): Arrival {
+fun ArrivalApi.toArrival(): Arrival {
     return Arrival(
         town = town,
         date = date,
@@ -44,7 +44,7 @@ internal fun ArrivalApi.toArrival(): Arrival {
     )
 }
 
-internal fun LuggageApi.toLuggage(): Luggage {
+fun LuggageApi.toLuggage(): Luggage {
     return Luggage(
         hasLuggage = hasLuggage,
         price = priceApi?.toPrice()
