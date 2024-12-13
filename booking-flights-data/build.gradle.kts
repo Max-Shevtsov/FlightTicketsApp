@@ -40,9 +40,13 @@ dependencies {
     implementation(libs.androidx.core.ktx)
 
     //Retrofit
-    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:retrofit:2.10.0")
     implementation("com.squareup.retrofit2:converter-gson:2.5.0")
     implementation("com.squareup.retrofit2:adapter-rxjava2:2.5.0")
+
+    implementation(libs.androidx.datastore.core.android)
+    implementation("androidx.datastore:datastore-preferences:1.1.1")
+
     //Room
     val roomVersion = "2.6.1"
     implementation("androidx.room:room-runtime:$roomVersion")
@@ -50,8 +54,8 @@ dependencies {
     implementation("androidx.room:room-common:$roomVersion")
     implementation("androidx.room:room-ktx:$roomVersion")
     //implementation(libs.dagger)
-    implementation ("com.google.dagger:dagger:2.53")
-    kapt ("com.google.dagger:dagger-compiler:2.53")
+    implementation("com.google.dagger:dagger:2.53")
+    kapt("com.google.dagger:dagger-compiler:2.53")
     kapt("androidx.room:room-compiler:$roomVersion")
     //
 }
