@@ -2,15 +2,6 @@ package com.max.booking_flights_data.di
 
 import dagger.Subcomponent
 
+@Subcomponent(modules = [ RepositoriesModule::class])
 interface BookingFlightsDataComponent {
-
-    fun getBookingFlightsDependencies(): BookingFlightsDependencies
-}
-
-@Subcomponent
-internal class BookingFlightsDataComponentImpl: BookingFlightsDataComponent {
-    
-    override fun getBookingFlightsDependencies(): BookingFlightsDependencies {
-        TODO("Not yet implemented")
-    }
 }

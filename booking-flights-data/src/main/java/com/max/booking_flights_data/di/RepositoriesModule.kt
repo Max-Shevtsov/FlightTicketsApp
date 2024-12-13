@@ -1,11 +1,11 @@
 package com.max.booking_flights_data.di
 
 import com.max.booking_flights_data.repositories.FlightToConcertsOffersRepositoryImpl
-import com.max.booking_flights_data.repositories.SaveDeparturesTownRepositoryImpl
+import com.max.booking_flights_data.repositories.DeparturesTownRepositoryImpl
 import com.max.booking_flights_data.repositories.TicketsOffersRepositoryImpl
 import com.max.booking_flights_data.repositories.TicketsRepositoryImpl
 import com.max.booking_flights_domain.repositories.FlightToConcertsOffersRepository
-import com.max.booking_flights_domain.repositories.SaveDeparturesTownRepository
+import com.max.booking_flights_domain.repositories.DeparturesTownRepository
 import com.max.booking_flights_domain.repositories.TicketsOffersRepository
 import com.max.booking_flights_domain.repositories.TicketsRepository
 import dagger.Binds
@@ -21,8 +21,8 @@ interface RepositoriesModule {
 
     @Binds
     fun bindsSaveDeparturesTownRepository(
-        repositoryImpl: SaveDeparturesTownRepositoryImpl
-    ): SaveDeparturesTownRepository
+        repositoryImpl: DeparturesTownRepositoryImpl
+    ): DeparturesTownRepository
 
     @Binds
     fun bindsTicketsOffersRepository(
