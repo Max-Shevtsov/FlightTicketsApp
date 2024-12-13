@@ -8,7 +8,7 @@ interface FlightToConcertsOfferUseCase {
     suspend operator fun invoke(): List<FlightToConcertOffer>
 }
 
-internal class FlightToConcertsOfferUseCaseImpl(
+class FlightToConcertsOfferUseCaseImpl(
     private val flightToConcertsOffersRepository: FlightToConcertsOffersRepository
 ): FlightToConcertsOfferUseCase {
 

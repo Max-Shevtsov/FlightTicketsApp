@@ -1,16 +1,25 @@
 package com.max.flightticketsapp.ui.flightsFragment
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.max.booking_flights_domain.repositories.FlightToConcertsOffersRepository
+import com.max.booking_flights_domain.usecases.FlightToConcertsOfferUseCase
+import com.max.flightticketsapp.data.mappers.toUIOffer
+import com.max.flightticketsapp.data.model.Offer
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class FlightsViewModel(/*private val offersRepository: OffersRepository*/) : ViewModel() {
+class FlightsViewModel @Inject constructor(private val flightToConcertsOffersRepository: FlightToConcertsOffersRepository) :
+    ViewModel() {
     private val _flightsUiState: MutableStateFlow<FlightsUiState> =
         MutableStateFlow(FlightsUiState())
     val flightsUiState: StateFlow<FlightsUiState> = _flightsUiState.asStateFlow()
 
-    /*init {
+    init {
         viewModelScope.launch {
             val offers = updateOffers()
             _flightsUiState.update {
@@ -21,32 +30,9 @@ class FlightsViewModel(/*private val offersRepository: OffersRepository*/) : Vie
         }
     }
 
-    private suspend fun updateOffers(): ArrayList<FlightToConcertOffer> {
-        return offersRepository.getOffers().offers
+    private suspend fun updateOffers(): List<Offer> {
+        return flightToConcertsOffersRepository.getFlightToConcertOffer().toUIOffer()
     }
 
-    companion object {
-        val Factory: ViewModelProvider.Factory =
-            object : ViewModelProvider.Factory {
-                override fun <T : ViewModel> create(
-                    modelClass: Class<T>,
-                    extras: CreationExtras
-                ): T {
-                    if (modelClass.isAssignableFrom(FlightsViewModel::class.java)) {
-                        val application = checkNotNull(extras[APPLICATION_KEY])
-                        val applicationScope = CoroutineScope(SupervisorJob())
-                        val offersRepository = OffersRepository(
 
-                            networkDataSource = com.max.booking_flights_data.api.Retrofit.offersApi
-                        )
-
-                        return FlightsViewModel(
-                            offersRepository = offersRepository,
-
-                            ) as T
-                    }
-                    throw IllegalArgumentException("Unknown ViewModel")
-                }
-            }
-    }*/
 }

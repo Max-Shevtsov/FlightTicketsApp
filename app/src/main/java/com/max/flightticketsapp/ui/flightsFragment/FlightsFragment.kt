@@ -1,5 +1,6 @@
 package com.max.flightticketsapp.ui.flightsFragment
 
+import android.content.Context
 import android.os.Bundle
 import android.view.KeyEvent
 import androidx.fragment.app.Fragment
@@ -7,30 +8,43 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.widget.doOnTextChanged
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.max.booking_flights_domain.repositories.FlightToConcertsOffersRepository
+import com.max.flightticketsapp.App
 import com.max.flightticketsapp.R
 import com.max.flightticketsapp.databinding.FragmentFlightsBinding
+import com.max.flightticketsapp.di.AppComponent
+import com.max.flightticketsapp.di.ViewModelFactory
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 
 class FlightsFragment : Fragment() {
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+    private  val viewModel: FlightsViewModel by viewModels { viewModelFactory}
 
     private var _binding: FragmentFlightsBinding? = null
-
     private val binding get() = _binding!!
-
-    //private val viewModel: FlightsViewModel by viewModels { FlightsViewModel.Factory }
     private val bundle = Bundle()
     private lateinit var adapter: FlightsToConcertAdapter
-    //private lateinit var navController: NavController
 
-        override fun onCreateView(
+    //private lateinit var navController: NavController
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        (context.applicationContext as App).appComponent.inject(this)
+    }
+
+    override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
@@ -51,11 +65,13 @@ class FlightsFragment : Fragment() {
         return view
     }
 
+    private fun setupViewModel() {
+    }
     private fun renderState() {
         lifecycleScope.launch(Dispatchers.Main) {
-            /* viewModel.flightsUiState.collect { state ->
-                 adapter.submitList(state.offers)
-             }*/
+            viewModel.flightsUiState.collect { state ->
+                adapter.submitList(state.offers)
+            }
         }
     }
 
@@ -73,7 +89,7 @@ class FlightsFragment : Fragment() {
         binding.arrival.setOnFocusChangeListener { v, hasFocus ->
             if (hasFocus) {
                 findNavController().navigate(R.id.navigation_search, bundle)
-                    binding.arrival.clearFocus()
+                binding.arrival.clearFocus()
             }
         }
     }

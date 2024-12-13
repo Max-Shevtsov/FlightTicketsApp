@@ -10,7 +10,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 @Module
-internal class ApiServicesModule {
+class ApiServicesModule {
 
     @Provides
     fun providesOffersApi(retrofit: Retrofit): OffersListApi {
@@ -29,6 +29,7 @@ internal class ApiServicesModule {
 
     @Provides
     @Singleton
+
     fun providesRetrofit(): Retrofit {
         return Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
