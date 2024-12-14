@@ -6,15 +6,17 @@ import com.max.booking_flights_data.api.models.TicketsOffersListApi
 
 import retrofit2.http.GET
 
-interface OffersApi {
+interface OffersApiInterface {
     @GET("uc?id=1o1nX3uFISrG1gR-jr_03Qlu4_KEZWhav&export=download")
     suspend fun getOffers(): OffersListApi
 }
-interface TicketsOffersApi {
+interface TicketsOffersApiInterface {
     @GET("uc?id=13WhZ5ahHBwMiHRXxWPq-bYlRVRwAujta&export=download")
     suspend fun getTicketsOffers(): TicketsOffersListApi
 }
-interface TicketsApi {
+interface TicketsApiInterface {
     @GET("uc?export=download&id=1HogOsz4hWkRwco4kud3isZHFQLUAwNBA")
     suspend fun getTickets(): TicketsListApi
 }
+
+

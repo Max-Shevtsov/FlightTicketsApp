@@ -1,11 +1,14 @@
 package com.max.booking_flights_data.di
 
+import com.max.booking_flights_data.api.OffersApiInterface
+import com.max.booking_flights_data.api.TicketsApiInterface
+import com.max.booking_flights_data.api.TicketsOffersApiInterface
 import com.max.booking_flights_data.api.models.OffersListApi
 import com.max.booking_flights_data.api.models.TicketsListApi
 import com.max.booking_flights_data.api.models.TicketsOffersListApi
 import dagger.Module
 import dagger.Provides
-import jakarta.inject.Singleton
+import javax.inject.Singleton
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -13,23 +16,21 @@ import retrofit2.converter.gson.GsonConverterFactory
 class ApiServicesModule {
 
     @Provides
-    fun providesOffersApi(retrofit: Retrofit): OffersListApi {
-        return retrofit.create(OffersListApi::class.java)
+    fun providesOffersApi(retrofit: Retrofit): OffersApiInterface {
+        return retrofit.create(OffersApiInterface::class.java)
     }
 
     @Provides
-    fun providesTicketsOffersApi(retrofit: Retrofit): TicketsOffersListApi {
-        return retrofit.create(TicketsOffersListApi::class.java)
+    fun providesTicketsOffersApi(retrofit: Retrofit): TicketsOffersApiInterface {
+        return retrofit.create(TicketsOffersApiInterface::class.java)
     }
 
     @Provides
-    fun providesTicketsApi(retrofit: Retrofit): TicketsListApi {
-        return retrofit.create(TicketsListApi::class.java)
+    fun providesTicketsApi(retrofit: Retrofit): TicketsApiInterface {
+        return retrofit.create(TicketsApiInterface::class.java)
     }
-
-    @Provides
     @Singleton
-
+    @Provides
     fun providesRetrofit(): Retrofit {
         return Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())

@@ -24,7 +24,6 @@ interface AppComponent {
 
     fun inject(app: App)
     fun inject(target: FlightsFragment)
-    fun inject(target: SearchFragment)
     fun inject(target: TicketsOffersFragment)
     fun inject(target: TicketsFragment)
 //    fun Fragment.getAppComponent(): AppComponent =

@@ -20,11 +20,6 @@ interface ViewModelModule {
 
     @Binds
     @IntoMap
-    @ViewModelKey(SearchViewModel::class)
-    fun bindSearchViewModel(vm: SearchViewModel): ViewModel
-
-    @Binds
-    @IntoMap
     @ViewModelKey(TicketsOffersViewModel::class)
     fun bindTicketsOffersViewModel(vm: TicketsOffersViewModel): ViewModel
 
