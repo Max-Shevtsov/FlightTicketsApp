@@ -4,6 +4,6 @@ import com.google.gson.annotations.SerializedName
 
 data class OffersListApi (
 
-    @SerializedName("offers" ) var offersApi : ArrayList<OfferApi> = arrayListOf()
+    @SerializedName("offers" ) var offersApi : List<OfferApi> = emptyList()
 
 )
