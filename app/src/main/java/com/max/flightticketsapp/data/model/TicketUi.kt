@@ -1,19 +1,19 @@
 package com.max.flightticketsapp.data.model
 
 
-data class Ticket(
+data class TicketUi(
 
     var id: Int? = null,
     var badge: String? = null,
-    var price: Price? = Price(),
+    var price: PriceUi? = PriceUi(),
     var providerName: String? = null,
     var company: String? = null,
-    var departure: Departure? = Departure(),
-    var arrival: Arrival? = Arrival(),
+    var departure: DepartureUi? = DepartureUi(),
+    var arrival: ArrivalUi? = ArrivalUi(),
     var hasTransfer: Boolean? = null,
     var hasVisaTransfer: Boolean? = null,
-    var luggage: Luggage? = Luggage(),
-    var handLuggage: HandLuggage? = HandLuggage(),
+    var luggage: LuggageUi? = LuggageUi(),
+    var handLuggage: HandLuggageUi? = HandLuggageUi(),
     var isReturnable: Boolean? = null,
     var isExchangable: Boolean? = null
 

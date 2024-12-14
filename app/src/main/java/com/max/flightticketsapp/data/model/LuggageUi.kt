@@ -1,8 +1,8 @@
 package com.max.flightticketsapp.data.model
 
-data class Luggage(
+data class LuggageUi(
 
     var hasLuggage: Boolean? = null,
-    var price: Price? = Price()
+    var price: PriceUi? = PriceUi()
 
 )

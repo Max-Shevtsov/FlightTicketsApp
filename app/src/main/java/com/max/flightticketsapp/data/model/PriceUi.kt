@@ -1,8 +1,8 @@
 package com.max.flightticketsapp.data.model
 
 
-data class Price(
+data class PriceUi(
 
-    var value: Int? = null
+    val value: Int? = null
 
 )

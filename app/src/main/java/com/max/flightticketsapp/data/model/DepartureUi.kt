@@ -1,6 +1,6 @@
 package com.max.flightticketsapp.data.model
 
-data class Departure (
+data class DepartureUi (
 
      var town    : String? = null,
      var date    : String? = null,
