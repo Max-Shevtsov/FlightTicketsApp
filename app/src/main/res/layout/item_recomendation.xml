@@ -13,9 +13,7 @@
         <ImageView
             android:id="@+id/imageOfMusicGroup"
             android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:background="@drawable/button_background"
-            android:src="@drawable/ic_airplane" />
+            android:layout_height="40dp"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -28,6 +26,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:hint="Город"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
                 android:textSize="16sp" />
 
             <TextView
@@ -35,6 +35,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:text="Популярное направление"
+                android:textColor="@color/gray5"
                 android:textSize="14sp" />
 
 
