@@ -1,15 +1,16 @@
 package com.max.booking_flights_data.repositories
 
-import com.max.booking_flights_data.api.TicketsApi
+import com.max.booking_flights_data.api.TicketsApiInterface
 import com.max.booking_flights_data.mappers.toTickets
-import com.max.booking_flights_domain.models.Ticket
+import com.max.booking_flights_domain.models.TicketDomain
+import com.max.booking_flights_domain.models.TicketsListDomain
 import com.max.booking_flights_domain.repositories.TicketsRepository
 import javax.inject.Inject
 
 class TicketsRepositoryImpl @Inject constructor(
-    private val ticketsApi: TicketsApi
+    private val ticketsApiInterface: TicketsApiInterface
 ) : TicketsRepository {
-    override suspend fun getTickets(): List<Ticket> {
-        return ticketsApi.getTickets().toTickets()
+    override suspend fun getTickets(): TicketsListDomain {
+        return ticketsApiInterface.getTickets().toTickets()
     }
 }

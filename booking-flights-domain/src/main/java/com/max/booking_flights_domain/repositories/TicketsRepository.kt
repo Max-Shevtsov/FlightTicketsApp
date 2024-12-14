@@ -1,7 +1,8 @@
 package com.max.booking_flights_domain.repositories
 
-import com.max.booking_flights_domain.models.Ticket
+import com.max.booking_flights_domain.models.TicketDomain
+import com.max.booking_flights_domain.models.TicketsListDomain
 
 interface TicketsRepository {
-    suspend fun getTickets(): List<Ticket>
+    suspend fun getTickets(): TicketsListDomain
 }

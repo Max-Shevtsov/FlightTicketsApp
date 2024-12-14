@@ -2,17 +2,19 @@ package com.max.flightticketsapp.ui.ticketsFragment
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.max.flightticketsapp.data.model.Ticket
+import com.max.flightticketsapp.data.model.TicketUi
 import com.max.flightticketsapp.databinding.ItemTicketsBinding
 import kotlinx.datetime.DateTimePeriod
 import kotlinx.datetime.LocalDateTime
-import kotlinx.datetime.plus
+import kotlinx.datetime.TimeZone
+import kotlinx.datetime.toInstant
 
 class TicketsAdapter() :
-    ListAdapter<Ticket, TicketsAdapter.ViewHolder>(DIFFUTIL) {
+    ListAdapter<TicketUi, TicketsAdapter.ViewHolder>(DIFFUTIL) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -30,31 +32,54 @@ class TicketsAdapter() :
         private val binding: ItemTicketsBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(ticket: Ticket) {
+        fun bind(ticket: TicketUi) {
             with(binding) {
-                binding.price.text = ticket.price?.value.toString()
-
-                binding.arrTime.text =
-                    ticket.arrival?.date?.let { LocalDateTime.parse(it).time.toString() }
+                binding.price.text = "${ticket.price?.value} ₽"
                 binding.arrAirport.text = ticket.arrival?.airport
-
-                binding.depTime.text =
-                    ticket.departure?.date?.let { LocalDateTime.parse(it).time.toString() }
                 binding.depAirport.text = ticket.departure?.airport
 
-                binding.flightTime.text
+                if (ticket.hasTransfer == false) {
+                    binding.withoutTransferText.text = " Без пересадок"
+                    binding.slash.isVisible = true
+                } else {
+                    binding.slash.isVisible = false
+                }
+
+                if (ticket.badge != null) {
+                    binding.badge.text = ticket.badge
+                    binding.badge.isVisible = true
+                } else {
+                    binding.badge.isVisible = false
+                }
+
+                val arrivalDate = ticket.arrival?.date?.let { LocalDateTime.parse(it) }
+                val departureDate = ticket.departure?.date?.let { LocalDateTime.parse(it) }
+                val flightTime = departureDate?.toInstant(
+                    TimeZone.UTC
+                )?.let {
+                    arrivalDate?.toInstant(TimeZone.UTC)?.minus(
+                        it
+                    )
+                }
+                binding.arrTime.text = arrivalDate?.time.toString()
+                binding.depTime.text = departureDate?.time.toString()
+                binding.flightTime.text = "${flightTime?.inWholeHours}.${
+                    flightTime?.inWholeMinutes?.rem(
+                        60
+                    )
+                }ч в пути"
             }
         }
     }
 
     companion object {
-        private val DIFFUTIL = object : DiffUtil.ItemCallback<Ticket>() {
+        private val DIFFUTIL = object : DiffUtil.ItemCallback<TicketUi>() {
 
-            override fun areItemsTheSame(oldItem: Ticket, newItem: Ticket): Boolean {
+            override fun areItemsTheSame(oldItem: TicketUi, newItem: TicketUi): Boolean {
                 return oldItem.id == newItem.id
             }
 
-            override fun areContentsTheSame(oldItem: Ticket, newItem: Ticket): Boolean {
+            override fun areContentsTheSame(oldItem: TicketUi, newItem: TicketUi): Boolean {
                 return oldItem == newItem
             }
         }

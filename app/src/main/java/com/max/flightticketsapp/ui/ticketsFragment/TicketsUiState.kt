@@ -1,7 +1,8 @@
 package com.max.flightticketsapp.ui.ticketsFragment
 
-import com.max.flightticketsapp.data.model.Ticket
+import com.max.flightticketsapp.data.model.TicketUi
+import com.max.flightticketsapp.data.model.TicketsListUi
 
 data class TicketsUiState(
-    val tickets: List<Ticket> = emptyList()
+    val tickets: TicketsListUi = TicketsListUi(emptyList())
 )
