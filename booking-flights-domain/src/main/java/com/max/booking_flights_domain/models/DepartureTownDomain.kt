@@ -1,5 +1,5 @@
 package com.max.booking_flights_domain.models
 
-data class DepartureTown (
+data class DepartureTownDomain (
     val departuresTown: String
 )

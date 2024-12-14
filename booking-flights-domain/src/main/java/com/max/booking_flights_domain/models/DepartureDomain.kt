@@ -1,7 +1,7 @@
 package com.max.booking_flights_domain.models
 
 
-data class Departure(
+data class DepartureDomain(
 
     var town: String? = null,
     var date: String? = null,

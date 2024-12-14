@@ -1,11 +1,11 @@
 package com.max.booking_flights_domain.models
 
 
-data class TicketsOffers(
+data class TicketsOffersDomain(
 
     var id: Int? = null,
     var title: String? = null,
     var timeRange: ArrayList<String> = arrayListOf(),
-    var price: Price? = Price()
+    var price: PriceDomain? = PriceDomain()
 
 )
