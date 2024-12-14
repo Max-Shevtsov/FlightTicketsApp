@@ -1,18 +1,26 @@
 package com.max.flightticketsapp.data.mappers
 
-import com.max.booking_flights_data.api.models.PriceApi
-import com.max.booking_flights_domain.models.FlightToConcertOffer
-import com.max.booking_flights_domain.models.Price
-import com.max.flightticketsapp.data.model.Offer
+import com.max.booking_flights_domain.models.OffersListDomain
+import com.max.booking_flights_domain.models.PriceDomain
+import com.max.flightticketsapp.data.model.OfferUi
+import com.max.flightticketsapp.data.model.OffersListUi
+import com.max.flightticketsapp.data.model.PriceUi
 
-fun List<FlightToConcertOffer>.toUIOffer(): List<Offer> {
-    return listOf(FlightToConcertOffer()).map {
-        Offer(
-            id = it.id,
-            title = it.title,
-            town = it.town
-        )
-    }
+fun OffersListDomain.toUIOffer(): OffersListUi {
+    return OffersListUi(
+        offersDomain.map {
+            OfferUi(
+                id = it.id,
+                title = it.title,
+                town = it.town,
+                price = it.priceDomain?.toPriceUi()
+            )
+        }
+    )
 }
 
-
+fun PriceDomain.toPriceUi(): PriceUi {
+    return PriceUi(
+        value = value
+    )
+}
