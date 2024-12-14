@@ -2,15 +2,12 @@ package com.max.flightticketsapp.ui.ticketsOffersFragment
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 
 import androidx.recyclerview.widget.RecyclerView
 
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.bitmap.CenterCrop
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners
-import com.max.flightticketsapp.R
-import com.max.flightticketsapp.data.model.TicketsOffer
-import com.max.flightticketsapp.databinding.ItemRecomendationBinding
+import com.max.flightticketsapp.data.model.TicketsOfferUi
 import com.max.flightticketsapp.databinding.ItemTicketsOffersBinding
 
 const val STAMBUL =
@@ -20,8 +17,8 @@ const val SOCHI =
 const val PHUKET =
     "https://sun9-5.userapi.com/impg/8P31fEE-BJyQnSnsceEeVkm6T_aAZsqzkg3nZA/jRWc1_iCpJ4.jpg?size=600x352&quality=95&sign=c3397b1f70925327b60abf10395f42d3&type=album"
 
-class TicketsoffersAdapter(private val ticketsOffers: List<TicketsOffer>) :
-    RecyclerView.Adapter<TicketsoffersAdapter.ViewHolder>() {
+class TicketsOffersAdapter() :
+    ListAdapter<TicketsOfferUi, TicketsOffersAdapter.ViewHolder>(DIFFUTILS) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -30,24 +27,22 @@ class TicketsoffersAdapter(private val ticketsOffers: List<TicketsOffer>) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val ticketsOffer = ticketsOffers[position]
+        val ticketsOffer = getItem(position)
         holder.bind(ticketsOffer)
 
     }
 
-    override fun getItemCount(): Int {
-        return ticketsOffers.size
-    }
+
 
     class ViewHolder(
         private val binding: ItemTicketsOffersBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(ticketsOffer: TicketsOffer) {
+        fun bind(ticketsOffer: TicketsOfferUi) {
             with(binding) {
                 flightCompany.text = ticketsOffer.title
-                price.text = ticketsOffer.price.toString()
-                timeRange.text = ticketsOffer.timeRange.toString()
+                price.text = "${ticketsOffer.price?.value} ₽"
+                timeRange.text = ticketsOffer.timeRange.joinToString(separator = " ")
 //                val roundingRadius = 16
 //                when (recomendation) {
 //                    "Стамбул" -> Glide.with(this.root)
@@ -75,6 +70,18 @@ class TicketsoffersAdapter(private val ticketsOffers: List<TicketsOffer>) :
 //                }
 
 
+            }
+        }
+    }
+    companion object {
+        private val DIFFUTILS = object : DiffUtil.ItemCallback<TicketsOfferUi>() {
+
+            override fun areItemsTheSame(oldItem: TicketsOfferUi, newItem: TicketsOfferUi): Boolean {
+                return oldItem.id == newItem.id
+            }
+
+            override fun areContentsTheSame(oldItem: TicketsOfferUi, newItem: TicketsOfferUi): Boolean {
+                return oldItem == newItem
             }
         }
     }

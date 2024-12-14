@@ -56,6 +56,7 @@
                 android:layout_marginStart="8dp"
                 android:hint="Время вылета"
                 android:textColor="@color/white"
+                android:maxLines="1"
                 android:textColorHint="@color/white"
                 android:textSize="14sp" />
 
