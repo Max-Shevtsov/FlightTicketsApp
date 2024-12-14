@@ -3,5 +3,5 @@ package com.max.booking_flights_data.api.models
 import com.google.gson.annotations.SerializedName
 
 data class TicketsOffersListApi(
-    @SerializedName("ticketsOffers") var ticketOffers: ArrayList<TicketsOfferApi> = arrayListOf()
+    @SerializedName("tickets_offers") var ticketOffers: ArrayList<TicketsOfferApi> = arrayListOf()
 )

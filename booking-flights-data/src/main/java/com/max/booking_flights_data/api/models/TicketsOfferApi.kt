@@ -7,6 +7,6 @@ data class TicketsOfferApi(
     @SerializedName("id") var id: Int? = null,
     @SerializedName("title") var title: String? = null,
     @SerializedName("time_range") var timeRange: ArrayList<String> = arrayListOf(),
-    @SerializedName("priceApi") var priceApi: PriceApi? = PriceApi()
+    @SerializedName("price") var priceApi: PriceApi? = PriceApi()
 
 )
