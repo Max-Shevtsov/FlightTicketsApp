@@ -1,11 +1,12 @@
 package com.max.booking_flights_domain.usecases
 
-import com.max.booking_flights_domain.models.FlightToConcertOffer
+import com.max.booking_flights_domain.models.OfferDomain
+import com.max.booking_flights_domain.models.OffersListDomain
 import com.max.booking_flights_domain.repositories.FlightToConcertsOffersRepository
 
 interface FlightToConcertsOfferUseCase {
 
-    suspend operator fun invoke(): List<FlightToConcertOffer>
+    suspend operator fun invoke(): OffersListDomain
 }
 
 class FlightToConcertsOfferUseCaseImpl(
@@ -13,7 +14,7 @@ class FlightToConcertsOfferUseCaseImpl(
 ): FlightToConcertsOfferUseCase {
 
 
-    override suspend fun invoke(): List<FlightToConcertOffer> {
+    override suspend fun invoke(): OffersListDomain{
         return flightToConcertsOffersRepository.getFlightToConcertOffer()
     }
 }

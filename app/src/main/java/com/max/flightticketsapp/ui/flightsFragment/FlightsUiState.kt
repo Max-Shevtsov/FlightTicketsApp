@@ -1,12 +1,11 @@
 package com.max.flightticketsapp.ui.flightsFragment
 
-import com.max.flightticketsapp.data.model.Arrival
-import com.max.flightticketsapp.data.model.Departure
-import com.max.flightticketsapp.data.model.Offer
+import com.max.flightticketsapp.data.model.ArrivalUi
+import com.max.flightticketsapp.data.model.DepartureUi
+import com.max.flightticketsapp.data.model.OffersListUi
 
 data class FlightsUiState (
-    // могу ли использовать такие объекты напрямую из модели?
-    val departure: Departure? = null,
-    val arrival: Arrival? = null,
-    val offers: List<Offer>? = null
+    val departureUi: DepartureUi? = null,
+    val arrivalUi: ArrivalUi? = null,
+    val offersUi: OffersListUi =OffersListUi(emptyList())
 )

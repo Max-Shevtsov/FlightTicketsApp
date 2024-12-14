@@ -11,19 +11,14 @@ import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.max.booking_flights_domain.repositories.FlightToConcertsOffersRepository
 import com.max.flightticketsapp.App
 import com.max.flightticketsapp.R
 import com.max.flightticketsapp.databinding.FragmentFlightsBinding
-import com.max.flightticketsapp.di.AppComponent
-import com.max.flightticketsapp.di.ViewModelFactory
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -31,7 +26,7 @@ import javax.inject.Inject
 class FlightsFragment : Fragment() {
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
-    private  val viewModel: FlightsViewModel by viewModels { viewModelFactory}
+    private val viewModel: FlightsViewModel by viewModels { viewModelFactory }
 
     private var _binding: FragmentFlightsBinding? = null
     private val binding get() = _binding!!
@@ -52,13 +47,13 @@ class FlightsFragment : Fragment() {
         val view: View = binding.root
 
         adapter = FlightsToConcertAdapter()
-        val dividerItemDecoration = DividerItemDecoration(context, RecyclerView.VERTICAL)
+        val dividerItemDecoration = DividerItemDecoration(context, RecyclerView.HORIZONTAL)
         dividerItemDecoration.setDrawable(resources.getDrawable(R.drawable.divider_drawable))
 
         val recyclerView = binding.recyclerView
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
-
+        recyclerView.addItemDecoration(dividerItemDecoration)
         renderState()
         initListeners()
 
@@ -67,10 +62,11 @@ class FlightsFragment : Fragment() {
 
     private fun setupViewModel() {
     }
+
     private fun renderState() {
         lifecycleScope.launch(Dispatchers.Main) {
             viewModel.flightsUiState.collect { state ->
-                adapter.submitList(state.offers)
+                adapter.submitList(state.offersUi.offersUi)
             }
         }
     }

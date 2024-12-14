@@ -1,16 +1,21 @@
 package com.max.booking_flights_data.repositories
 
-import com.max.booking_flights_data.api.OffersApi
+import android.util.Log
+import com.max.booking_flights_data.api.OffersApiInterface
 import com.max.booking_flights_data.mappers.toFlightToConcertOffer
-import com.max.booking_flights_domain.models.FlightToConcertOffer
+import com.max.booking_flights_domain.models.OfferDomain
+import com.max.booking_flights_domain.models.OffersListDomain
 import com.max.booking_flights_domain.repositories.FlightToConcertsOffersRepository
 import javax.inject.Inject
 
 class FlightToConcertsOffersRepositoryImpl @Inject constructor(
-    private val offersApi: OffersApi,
+    private val offersApiInterface: OffersApiInterface,
 ) : FlightToConcertsOffersRepository {
 
-    override suspend fun getFlightToConcertOffer(): List<FlightToConcertOffer> {
-        return offersApi.getOffers().toFlightToConcertOffer()
+    override suspend fun getFlightToConcertOffer(): OffersListDomain {
+       val offersListApi = offersApiInterface.getOffers()
+        Log.e("!!!", "OffersListApi$offersListApi")
+        Log.e("!!!", "priceApi:${offersListApi.offersApi.firstOrNull()?.priceApi?.value}")
+        return offersListApi.toFlightToConcertOffer()
     }
 }
