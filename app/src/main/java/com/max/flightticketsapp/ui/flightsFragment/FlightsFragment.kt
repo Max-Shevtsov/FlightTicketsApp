@@ -54,6 +54,9 @@ class FlightsFragment : Fragment() {
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
         recyclerView.addItemDecoration(dividerItemDecoration)
+
+        binding.departure.setText(viewModel.flightsUiState.value.departureTown.departuresTown)
+
         renderState()
         initListeners()
 
@@ -73,6 +76,9 @@ class FlightsFragment : Fragment() {
 
     private fun initListeners() {
         binding.departure.doOnTextChanged { text, _, _, _ ->
+            lifecycleScope.launch {
+                viewModel.setDepartureTown(text)
+            }
             bundle.putString("departure_town", text.toString())
         }
         binding.departure.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->

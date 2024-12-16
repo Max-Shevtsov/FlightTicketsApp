@@ -9,7 +9,9 @@ import javax.inject.Singleton
 @Module
 class DbModule {
 
+
     @Provides
     @Singleton
     fun provideDataStoreRepository(context: Context) = DeparturesTownRepositoryImpl(context)
+
 }

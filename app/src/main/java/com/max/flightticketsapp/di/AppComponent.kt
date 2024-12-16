@@ -1,5 +1,7 @@
 package com.max.flightticketsapp.di
 
+import android.app.Application
+import android.content.Context
 import androidx.fragment.app.Fragment
 import com.max.booking_flights_data.di.ApiServicesModule
 import com.max.booking_flights_data.di.BookingFlightsDataComponent
@@ -13,11 +15,18 @@ import com.max.flightticketsapp.ui.flightsFragment.FlightsFragment
 import com.max.flightticketsapp.ui.searchFragment.SearchFragment
 import com.max.flightticketsapp.ui.ticketsFragment.TicketsFragment
 import com.max.flightticketsapp.ui.ticketsOffersFragment.TicketsOffersFragment
+import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [ApiServicesModule::class, DbModule::class, ViewModelModule::class, RepositoriesModule::class, UseCasesModule::class])
+@Component(modules = [
+    ApiServicesModule::class,
+    DbModule::class,
+    ViewModelModule::class,
+    RepositoriesModule::class,
+    UseCasesModule::class])
+
 interface AppComponent {
 //    fun createBookingFlightsDataComponent(): BookingFlightsDataComponent
 //    fun createBookingFlightsDomainComponent(): BookingFlightsDomainComponent
@@ -28,5 +37,8 @@ interface AppComponent {
     fun inject(target: TicketsFragment)
 //    fun Fragment.getAppComponent(): AppComponent =
 //        (requireContext() as App).appComponent
-
+@Component.Factory
+interface AppComponentFactory {
+    fun create(@BindsInstance context: Context): AppComponent
+}
 }
